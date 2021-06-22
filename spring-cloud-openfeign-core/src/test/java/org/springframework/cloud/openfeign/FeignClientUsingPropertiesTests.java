@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign;
 
@@ -66,7 +66,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -295,8 +294,8 @@ public class FeignClientUsingPropertiesTests {
 
 	protected interface FormClient {
 
-		@RequestMapping(value = "/form", method = RequestMethod.POST,
-				consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+		@PostMapping(value = "/form",
+			consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 		String form(Map<String, String> form);
 
 	}
@@ -328,7 +327,7 @@ public class FeignClientUsingPropertiesTests {
 	@Import(NoSecurityConfiguration.class)
 	protected static class Application {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/foo")
+		@GetMapping("/foo")
 		public String foo(HttpServletRequest request) throws IllegalAccessException {
 			if ("Foo".equals(request.getHeader("Foo")) && "Bar".equals(request.getHeader("Bar"))) {
 				return "OK";

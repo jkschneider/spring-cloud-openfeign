@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign.valid.scanning;
 
@@ -35,7 +35,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -70,7 +69,7 @@ public class FeignClientEnvVarTests {
 	@Import(NoSecurityConfiguration.class)
 	protected static class Application {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		public String getHello() {
 			return "hello world 1";
 		}

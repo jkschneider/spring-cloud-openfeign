@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign.invalid;
 
@@ -28,7 +28,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -74,7 +73,7 @@ public class FeignClientValidationTests {
 		@FeignClient(name = "bar")
 		interface Client {
 
-			@RequestMapping(method = RequestMethod.GET, value = "/")
+			@GetMapping("/")
 			String get();
 
 		}
@@ -90,7 +89,7 @@ public class FeignClientValidationTests {
 		@FeignClient(contextId = "foo", name = "bar")
 		interface FooClient {
 
-			@RequestMapping(method = RequestMethod.GET, value = "/")
+			@GetMapping("/")
 			String get();
 
 		}
@@ -98,7 +97,7 @@ public class FeignClientValidationTests {
 		@FeignClient(name = "bar")
 		interface BarClient {
 
-			@RequestMapping(method = RequestMethod.GET, value = "/")
+			@GetMapping("/")
 			String get();
 
 		}
@@ -113,7 +112,7 @@ public class FeignClientValidationTests {
 		@FeignClient("foo_bar")
 		interface Client {
 
-			@RequestMapping(method = RequestMethod.GET, value = "/")
+			@GetMapping("/")
 			String get();
 
 		}

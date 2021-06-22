@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign;
 
@@ -25,7 +25,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mock.env.MockEnvironment;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -105,7 +104,7 @@ public class FeignClientsRegistrarTests {
 	@FeignClient(name = "fallbackTestClient", url = "http://localhost:8080/", fallback = FallbackClient.class)
 	protected interface FallbackClient {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		String fallbackTest();
 
 	}
@@ -114,7 +113,7 @@ public class FeignClientsRegistrarTests {
 			fallbackFactory = FallbackFactoryClient.class)
 	protected interface FallbackFactoryClient {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		String fallbackFactoryTest();
 
 	}

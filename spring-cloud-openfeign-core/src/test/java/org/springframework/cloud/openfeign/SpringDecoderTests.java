@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign;
 
@@ -39,7 +39,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -154,22 +153,22 @@ public class SpringDecoderTests extends FeignClientFactoryBean {
 
 	protected interface TestClient {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/helloresponse")
+		@GetMapping("/helloresponse")
 		ResponseEntity<Hello> getHelloResponse();
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hellovoid")
+		@GetMapping("/hellovoid")
 		ResponseEntity<Void> getHelloVoid();
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		Hello getHello();
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hellos")
+		@GetMapping("/hellos")
 		List<Hello> getHellos();
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hellostrings")
+		@GetMapping("/hellostrings")
 		List<String> getHelloStrings();
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hellonotfound")
+		@GetMapping("/hellonotfound")
 		ResponseEntity<String> getNotFound();
 
 		@GetMapping("/helloWildcard")

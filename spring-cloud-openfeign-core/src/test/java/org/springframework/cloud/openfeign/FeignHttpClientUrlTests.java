@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign;
 
@@ -37,7 +37,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.SocketUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -102,7 +101,7 @@ class FeignHttpClientUrlTests {
 	@FeignClient(name = "localappurl", url = "http://localhost:${server.port}/")
 	protected interface UrlClient {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		Hello getHello();
 
 	}
@@ -110,7 +109,7 @@ class FeignHttpClientUrlTests {
 	@FeignClient(name = "beanappurl", url = "#{SERVER_URL}path")
 	protected interface BeanUrlClient {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		Hello getHello();
 
 	}
@@ -118,7 +117,7 @@ class FeignHttpClientUrlTests {
 	@FeignClient(name = "beanappurlnoprotocol", url = "#{SERVER_URL_NO_PROTOCOL}path")
 	protected interface BeanUrlClientNoProtocol {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		Hello getHello();
 
 	}
@@ -130,12 +129,12 @@ class FeignHttpClientUrlTests {
 	@Import(NoSecurityConfiguration.class)
 	protected static class TestConfig {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		public Hello getHello() {
 			return new Hello("hello world 1");
 		}
 
-		@RequestMapping(method = RequestMethod.GET, value = "/path/hello")
+		@GetMapping("/path/hello")
 		public Hello getHelloWithPath() {
 			return getHello();
 		}

@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign;
 
@@ -37,7 +37,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -133,7 +132,7 @@ public class FeignClientErrorDecoderTests {
 	@FeignClient(name = "bar", url = "http://bar", configuration = BarConfiguration.class)
 	interface BarClient {
 
-		@RequestMapping(value = "/", method = RequestMethod.GET)
+		@GetMapping("/")
 		String get();
 
 	}

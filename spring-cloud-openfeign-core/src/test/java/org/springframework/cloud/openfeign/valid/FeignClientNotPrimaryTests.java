@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign.valid;
 
@@ -37,7 +37,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -83,7 +82,7 @@ public class FeignClientNotPrimaryTests {
 	@FeignClient(name = "localapp", primary = false)
 	protected interface TestClient {
 
-		@RequestMapping(method = RequestMethod.GET, path = "/hello")
+		@GetMapping("/hello")
 		Hello getHello();
 
 	}
@@ -101,7 +100,7 @@ public class FeignClientNotPrimaryTests {
 			return new PrimaryTestClient();
 		}
 
-		@RequestMapping(method = RequestMethod.GET, path = "/hello")
+		@GetMapping("/hello")
 		public Hello getHello() {
 			return new Hello(HELLO_WORLD_1);
 		}

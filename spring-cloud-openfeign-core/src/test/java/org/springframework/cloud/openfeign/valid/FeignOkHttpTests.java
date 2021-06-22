@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign.valid;
 
@@ -43,7 +43,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -107,17 +106,17 @@ class FeignOkHttpTests {
 
 	protected interface BaseTestClient {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		Hello getHello();
 
-		@RequestMapping(method = RequestMethod.PATCH, value = "/hellop", consumes = "application/json")
+		@PatchMapping(value = "/hellop", consumes = "application/json")
 		ResponseEntity<Void> patchHello(Hello hello);
 
 	}
 
 	protected interface UserService {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/users/{id}")
+		@GetMapping("/users/{id}")
 		User getUser(@PathVariable("id") long id);
 
 	}
@@ -138,12 +137,12 @@ class FeignOkHttpTests {
 	@Import(NoSecurityConfiguration.class)
 	protected static class Application implements UserService {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		public Hello getHello() {
 			return new Hello("hello world 1");
 		}
 
-		@RequestMapping(method = RequestMethod.PATCH, value = "/hellop")
+		@PatchMapping("/hellop")
 		public ResponseEntity<Void> patchHello(@RequestBody Hello hello,
 				@RequestHeader("Content-Length") int contentLength) {
 			if (contentLength <= 0) {

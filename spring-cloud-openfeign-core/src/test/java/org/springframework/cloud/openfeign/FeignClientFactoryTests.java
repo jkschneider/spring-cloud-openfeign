@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign;
 
@@ -39,10 +39,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
  * @author Spencer Gibb
@@ -90,7 +88,7 @@ public class FeignClientFactoryTests {
 
 	interface TestType {
 
-		@RequestMapping(value = "/", method = GET)
+		@GetMapping("/")
 		String hello();
 
 	}

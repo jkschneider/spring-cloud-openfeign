@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign.circuitbreaker;
 
@@ -40,7 +40,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.util.SocketUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -97,10 +96,10 @@ public class CircuitBreakerWithNoFallbackTests {
 	@FeignClient(name = "test", url = "http://localhost:${server.port}/")
 	protected interface CircuitBreakerTestClient {
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hello")
+		@GetMapping("/hello")
 		Hello getHello();
 
-		@RequestMapping(method = RequestMethod.GET, value = "/hellonotfound")
+		@GetMapping("/hellonotfound")
 		String getException();
 
 	}

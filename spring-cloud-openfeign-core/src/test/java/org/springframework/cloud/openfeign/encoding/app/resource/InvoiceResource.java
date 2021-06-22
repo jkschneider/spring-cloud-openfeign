@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign.encoding.app.resource;
 
@@ -21,15 +21,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-
 import org.springframework.cloud.openfeign.encoding.app.domain.Invoice;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,32 +38,32 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Jakub Narloch
  * @author Hyeonmin Park
- */
+	 */
 @RestController
 public class InvoiceResource {
 
-	@RequestMapping(value = "invoices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "invoices", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Invoice>> getInvoices() {
 
 		return ResponseEntity.ok(createInvoiceList(null, 100, null));
 	}
 
-	@RequestMapping(value = "invoices", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "invoices", consumes = MediaType.APPLICATION_JSON_VALUE,
+		produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<List<Invoice>> saveInvoices(@RequestBody List<Invoice> invoices) {
 
 		return ResponseEntity.ok(invoices);
 	}
 
-	@RequestMapping(value = "invoicesPaged", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "invoicesPaged", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<Invoice>> getInvoicesPaged(org.springframework.data.domain.Pageable pageable) {
 		Page<Invoice> page = new PageImpl<>(createInvoiceList(null, pageable.getPageSize(), pageable.getSort()),
 				pageable, 100);
 		return ResponseEntity.ok(page);
 	}
 
-	@RequestMapping(value = "invoicesPagedWithBody", method = RequestMethod.POST,
-			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "invoicesPagedWithBody",
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<Invoice>> getInvoicesPagedWithBody(org.springframework.data.domain.Pageable pageable,
 			@RequestBody String titlePrefix) {
 		Page<Invoice> page = new PageImpl<>(createInvoiceList(titlePrefix, pageable.getPageSize(), pageable.getSort()),
@@ -71,8 +71,8 @@ public class InvoiceResource {
 		return ResponseEntity.ok(page);
 	}
 
-	@RequestMapping(value = "invoicesSortedWithBody", method = RequestMethod.POST,
-			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "invoicesSortedWithBody",
+		consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<Invoice>> getInvoicesSortedWithBody(org.springframework.data.domain.Sort sort,
 			@RequestBody String titlePrefix) {
 		Page<Invoice> page = new PageImpl<>(createInvoiceList(titlePrefix, 100, sort), PageRequest.of(0, 100, sort),

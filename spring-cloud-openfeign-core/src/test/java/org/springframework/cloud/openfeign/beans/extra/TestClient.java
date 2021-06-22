@@ -12,19 +12,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+	 */
 
 package org.springframework.cloud.openfeign.beans.extra;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.beans.BeansFeignClientTests.Hello;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @FeignClient(value = "otherapp", qualifier = "uniquequalifier")
 public interface TestClient {
 
-	@RequestMapping(method = RequestMethod.GET, value = "/hello")
+	@GetMapping("/hello")
 	Hello getHello();
 
 }
